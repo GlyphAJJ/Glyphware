@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glyphware</title>
+  
+  <link rel="icon" href="https://i.ibb.co/BHGHXYBh/89269308b6cd0f754dfae79ea07f5eec-removebg-preview.png" type="image/png" />
+  <link rel="icon" href="favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" href="favicon-64x64.png" sizes="64x64" />
+  <link rel="icon" href="favicon-128x128.png" sizes="128x128" />
+  <link rel="icon" href="favicon-192x192.png" sizes="192x192" />
+  
+  <style>
+    :root {
+      --primary: #9d4edd;
+      --primary-dark: #7b2cbf;
+      --bg-dark: #0a0a0a;
+      --bg-card: #151515;
+      --text: #ffffff;
+      --text-secondary: #cccccc;
+      --glow-color: rgba(157, 78, 221, 0.5);
+      --gradient-start: #9d4edd;
+      --gradient-end: #3a0ca3;
+      --pink-start: #ff80df;
+      --pink-end: #ff33b3;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--primary);
+      margin-left: 5px;
+      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero {
+      margin-top: 80px;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(157, 78, 221, 0.15), transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #ffffff, var(--gradient-start));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(157, 78, 221, 0.3);
+    }
+	
+	.hero h9 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #ffffff, var(--gradient-start));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(157, 78, 221, 0.3);
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 700px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+
+    .hero-image-container {
+      position: relative;
+      perspective: 1000px;
+      margin: 40px 0;
+    }
+
+    .hero-image {
+      width: 907px;
+      height: 503px;
+      max-width: 90vw;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .hero-image-container:hover .hero-image {
+      transform: rotate3d(0.5, 1, 0, 15deg);
+      box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.3),
+        0 0 0 2px rgba(157, 78, 221, 0.3),
+        0 0 30px var(--glow-color);
+    }
+
+    .download-btn {
+      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+      color: #ffffff;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3);
+      text-transform: uppercase;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(157, 78, 221, 0.4);
+    }
+
+    .download-btn::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0)
+      );
+      transform: rotate(45deg);
+      z-index: 1;
+      transition: all 0.6s ease;
+      opacity: 0;
+    }
+
+    .download-btn:hover::before {
+      animation: shine 1.5s infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes shine {
+      0% { left: -50%; opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { left: 150%; opacity: 0; }
+    }
+
+    .features {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .features h2 {
+      text-align: center;
+      font-size: 48px;
+      margin-bottom: 60px;
+      background: linear-gradient(90deg, var(--pink-start), var(--pink-end));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 51, 179, 0.5);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background-color: var(--bg-card);
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      border: 1px solid #333;
+      transition: all 0.5s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px) rotateY(5deg);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 2px rgba(157, 78, 221, 0.3),
+        0 0 30px var(--glow-color);
+    }
+
+    .feature-card h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .feature-card p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .footer {
+      background-color: #0f0f0f;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .footer p {
+      color: var(--text-secondary);
+      margin: 10px 0;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const image = document.getElementById("hero-image");
+      const button = document.getElementById("download-btn");
+
+      image.src = "https://i.ibb.co/gNNh6Ys/image.png";
+      button.onclick = () => {
+        window.location.href = "https://example.com/glyphware-download.zip";
+      };
+    });
+  </script>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="#" class="logo">Glyphware<span>External</span></a>
+  </nav>
+
+  <section class="hero">
+    <h1>Glyphware External</h1>
+    <p>Glyphware uses external access to provide safe undetected cheats like ESP, aimbot, and memory manipulation.</p>
+
+    <div class="hero-image-container">
+      <img id="hero-image" alt="Glyphware UI Screenshot" class="hero-image" />
+    </div>
+
+    <button id="download-btn" class="download-btn">Download Glyphware</button>
+  </section>
+
+  <section class="features">
+  <h2 style="background: linear-gradient(90deg, #ffffff, var(--gradient-start)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(157, 78, 221, 0.3); font-size: 36px; text-align: center; margin-bottom: 60px;">Top Features</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h3>External ESP</h3>
+      <p>Wallhacks, player outlines, and item highlights rendered directly via overlay — no injection required.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Aimbot with Prediction</h3>
+      <p>Mouse-based aimbot with visibility check and smooth aim. Fully external and undetectable.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Memory Scanning</h3>
+      <p>Read and monitor game memory externally to track player states and dynamic values.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Proccess Masking</h3>
+      <p>Glyphware utilizes advanced dynamic process masking to remain undetected also automatically deleting all logs after use.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Anti-Screenshot</h3>
+      <p>Bypasses Roblox screenshot-based detection systems by rendering overlays in separate layer.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Safe & Lightweight</h3>
+      <p>Does not inject or modify Roblox memory. Fully external with minimal system footprint.</p>
+    </div>
+  </div>
+</section>
+
+
+  <footer class="footer">
+    <p>Glyphware — Most Advanced External.</p>
+  </footer>
+</body>
+</html>
